@@ -1,0 +1,12 @@
+{
+  "createdWith": "2.2.3",
+  "boilerplate": "ignite-bowser",
+  "examples": "classic",
+  "navigation": "react-navigation",
+  "askToOverwrite": true,
+  "generators": {
+    "component": "ignite-bowser",
+    "model": "ignite-bowser",
+    "screen": "ignite-bowser"
+  }
+}

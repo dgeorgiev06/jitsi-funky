@@ -1,5 +1,5 @@
-import { ViewStyle } from "react-native"
-import { color, spacing } from "../../theme"
+import { ViewStyle } from 'react-native'
+import { color, spacing } from '../../theme'
 
 /**
  * The size of the border radius.
@@ -12,7 +12,7 @@ const RADIUS = 8
 const ROOT: ViewStyle = {
   borderWidth: 1,
   borderColor: color.line,
-  padding: spacing[2],
+  padding: spacing[2]
 }
 
 /**
@@ -26,14 +26,14 @@ export const PRESETS = {
     ...ROOT,
     borderTopLeftRadius: RADIUS,
     borderTopRightRadius: RADIUS,
-    borderBottomWidth: 0,
+    borderBottomWidth: 0
   },
   /**
    * No rounded borders.
    */
   middle: {
     ...ROOT,
-    borderBottomWidth: 0,
+    borderBottomWidth: 0
   },
   /**
    * Rounded borders on the bottom.
@@ -41,28 +41,28 @@ export const PRESETS = {
   bottom: {
     ...ROOT,
     borderBottomLeftRadius: RADIUS,
-    borderBottomRightRadius: RADIUS,
+    borderBottomRightRadius: RADIUS
   },
   /**
    * Rounded borders everywhere.
    */
   soloRound: {
     ...ROOT,
-    borderRadius: RADIUS,
+    borderRadius: RADIUS
   },
   /**
    * Straight borders everywhere.
    */
   soloStraight: {
-    ...ROOT,
+    ...ROOT
   },
   /**
    * Transparent borders useful to keep things lined up.
    */
   clear: {
     ...ROOT,
-    borderColor: color.transparent,
-  },
+    borderColor: color.transparent
+  }
 }
 
 /**

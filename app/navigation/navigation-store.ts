@@ -1,7 +1,7 @@
-import { types } from "mobx-state-tree"
-import { RootNavigator } from "./root-navigator"
-import { NavigationActions, NavigationAction } from "react-navigation"
-import { NavigationEvents } from "./navigation-events"
+import { types } from 'mobx-state-tree'
+import { RootNavigator } from './root-navigator'
+import { NavigationActions, NavigationAction } from 'react-navigation'
+import { NavigationEvents } from './navigation-events'
 
 const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.init(), null)
 
@@ -10,7 +10,7 @@ const DEFAULT_STATE = RootNavigator.router.getStateForAction(NavigationActions.i
  *
  * @param navState the current nav state
  */
-function findCurrentRoute(navState) {
+function findCurrentRoute (navState) {
   const route = navState.routes[navState.index]
   if (route.routes) {
     return findCurrentRoute(route)
@@ -22,19 +22,19 @@ function findCurrentRoute(navState) {
  * Tracks the navigation state for `react-navigation` as well as providers
  * the actions for changing that state.
  */
-export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
+export const NavigationStoreModel = NavigationEvents.named('NavigationStore')
   .props({
     /**
      * the navigation state tree (Frozen here means it is immutable.)
      */
-    state: types.optional(types.frozen, DEFAULT_STATE),
+    state: types.optional(types.frozen, DEFAULT_STATE)
   })
   .actions(self => ({
 
     /**
-     * Return all subscribers 
+     * Return all subscribers
      */
-    actionSubscribers(){
+    actionSubscribers () {
       return self.subs
     },
 
@@ -46,7 +46,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      * @param action The new navigation action to perform
      * @param shouldPush Should we push or replace the whole stack?
      */
-    dispatch(action: NavigationAction, shouldPush: boolean = true) {
+    dispatch (action: NavigationAction, shouldPush: boolean = true) {
       const previousNavState = shouldPush ? self.state : null
       self.state = RootNavigator.router.getStateForAction(action, previousNavState) || self.state
       self.fireSubscribers(action, previousNavState, self.state)
@@ -56,16 +56,16 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
     /**
      * Resets the navigation back to the start.
      */
-    reset() {
+    reset () {
       self.state = DEFAULT_STATE
     },
 
     /**
      * Finds the current route.
      */
-    findCurrentRoute() {
+    findCurrentRoute () {
       return findCurrentRoute(self.state)
-    },
+    }
   }))
   .actions(self => ({
     /**
@@ -75,7 +75,7 @@ export const NavigationStoreModel = NavigationEvents.named("NavigationStore")
      */
     navigateTo (routeName: string) {
       self.dispatch(NavigationActions.navigate({ routeName }))
-    },
+    }
   }))
 
 export type NavigationStore = typeof NavigationStoreModel.Type

@@ -1,1 +1,1 @@
-export * from "./wallpaper"
+export * from './wallpaper'

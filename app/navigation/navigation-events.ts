@@ -1,5 +1,5 @@
-import { types } from "mobx-state-tree"
-import { EventType, NavigationEventCallback } from "react-navigation"
+import { types } from 'mobx-state-tree'
+import { EventType, NavigationEventCallback } from 'react-navigation'
 
 /**
  * This mobx-state-tree model bestows a few events for working with `react-navigation`
@@ -7,7 +7,7 @@ import { EventType, NavigationEventCallback } from "react-navigation"
  *
  * You use can `compose` or build directly off this to mixin these features.
  */
-export const NavigationEvents = types.model("NavigationEvents").volatile(self => {
+export const NavigationEvents = types.model('NavigationEvents').volatile(self => {
   // who is currently subscribed to react-navigation events
   const subs = new Set<NavigationEventCallback>()
 
@@ -23,10 +23,10 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
     // tell each subscriber out this
     subs.forEach(subscriber => {
       subscriber({
-        type: "action",
+        type: 'action',
         action,
         state: newState,
-        lastState: oldState,
+        lastState: oldState
       })
     })
   }
@@ -39,7 +39,7 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
    * @param handler Some strange handler
    */
   const addListener = (eventName: EventType, handler: NavigationEventCallback) => {
-    if (eventName !== "action") {
+    if (eventName !== 'action') {
       return { remove: () => {} }
     }
 
@@ -48,9 +48,9 @@ export const NavigationEvents = types.model("NavigationEvents").volatile(self =>
 
     // return the instructions on how to unsubscribe
     return {
-      remove: () => subs.delete(handler),
+      remove: () => subs.delete(handler)
     }
   }
 
-  return { addListener, fireSubscribers, subs}
+  return { addListener, fireSubscribers, subs }
 })

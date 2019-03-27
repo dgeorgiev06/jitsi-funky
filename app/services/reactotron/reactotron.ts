@@ -1,9 +1,9 @@
-import Tron from "reactotron-react-native"
-import { RootStore } from "../../models/root-store/root-store"
-import { onSnapshot } from "mobx-state-tree"
-import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
-import { mst } from "reactotron-mst"
-import { commandMiddleware } from "./command-middleware"
+import Tron from 'reactotron-react-native'
+import { RootStore } from '../../models/root-store/root-store'
+import { onSnapshot } from 'mobx-state-tree'
+import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from './reactotron-config'
+import { mst } from 'reactotron-mst'
+import { commandMiddleware } from './command-middleware'
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -11,7 +11,7 @@ declare global {
     /**
      * Hey, it's Reactotron if we're in dev, and no-ops if we're in prod.
      */
-    tron: typeof Tron
+    tron: typeof Tron;
   }
 }
 
@@ -38,7 +38,7 @@ if (__DEV__) {
     reportError: noop,
     use: noop,
     useReactNative: noop,
-    warn: noop,
+    warn: noop
   }
 }
 
@@ -56,17 +56,17 @@ export class Reactotron {
    *
    * @param config the configuration
    */
-  constructor(config: ReactotronConfig = DEFAULT_REACTOTRON_CONFIG) {
+  constructor (config: ReactotronConfig = DEFAULT_REACTOTRON_CONFIG) {
     // merge the passed in config with some defaults
     this.config = {
-      host: "localhost",
+      host: 'localhost',
       useAsyncStorage: true,
       ...config,
       state: {
         initial: false,
         snapshots: false,
-        ...(config && config.state),
-      },
+        ...(config && config.state)
+      }
     }
   }
 
@@ -75,22 +75,22 @@ export class Reactotron {
    *
    * @param rootStore The root store
    */
-  setRootStore(rootStore: any, initialData: any) {
+  setRootStore (rootStore: any, initialData: any) {
     if (__DEV__) {
       rootStore = rootStore as RootStore // typescript hack
       this.rootStore = rootStore
 
       const { initial, snapshots } = this.config.state
-      const name = "ROOT STORE"
+      const name = 'ROOT STORE'
 
       // logging features
       if (initial) {
-        console.tron.display({ name, value: initialData, preview: "Initial State" })
+        console.tron.display({ name, value: initialData, preview: 'Initial State' })
       }
       // log state changes?
       if (snapshots) {
         onSnapshot(rootStore, snapshot => {
-          console.tron.display({ name, value: snapshot, preview: "New State" })
+          console.tron.display({ name, value: snapshot, preview: 'New State' })
         })
       }
 
@@ -102,18 +102,18 @@ export class Reactotron {
   /**
    * Configure reactotron based on the the config settings passed in, then connect if we need to.
    */
-  async setup() {
+  async setup () {
     // only run this in dev... metro bundler will ignore this block: 🎉
     if (__DEV__) {
       // configure reactotron
       Tron.configure({
-        name: this.config.name || require("../../../package.json").name,
-        host: this.config.host,
+        name: this.config.name || require('../../../package.json').name,
+        host: this.config.host
       })
 
       // hookup middleware
       Tron.useReactNative({
-        asyncStorage: this.config.useAsyncStorage ? undefined : false,
+        asyncStorage: this.config.useAsyncStorage ? undefined : false
       })
 
       // ignore some chatty `mobx-state-tree` actions
@@ -122,8 +122,8 @@ export class Reactotron {
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
-          filter: event => RX.test(event.name) === false,
-        }),
+          filter: event => RX.test(event.name) === false
+        })
       )
 
       // hookup custom command middleware

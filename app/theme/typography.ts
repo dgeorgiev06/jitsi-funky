@@ -1,4 +1,4 @@
-import { Platform } from "react-native"
+import { Platform } from 'react-native'
 
 /**
  * Just the font names.
@@ -9,10 +9,10 @@ export const typography = {
   /**
    * The primary font.  Used in most places.
    */
-  primary: Platform.select({ ios: "Montserrat", android: "Montserrat" }),
+  primary: Platform.select({ ios: 'Montserrat', android: 'Montserrat' }),
 
   /**
    * An alternate font used for perhaps titles and stuff.
    */
-  secondary: Platform.select({ ios: "Montserrat", android: "Montserrat" }),
+  secondary: Platform.select({ ios: 'Montserrat', android: 'Montserrat' })
 }

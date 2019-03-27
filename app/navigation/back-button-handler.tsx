@@ -1,32 +1,32 @@
-import * as React from "react"
-import { BackHandler } from "react-native"
-import { inject, observer } from "mobx-react"
-import { NavigationActions } from "react-navigation"
-import { NavigationStore } from "../navigation/navigation-store"
+import * as React from 'react'
+import { BackHandler } from 'react-native'
+import { inject, observer } from 'mobx-react'
+import { NavigationActions } from 'react-navigation'
+import { NavigationStore } from '../navigation/navigation-store'
 
 interface BackButtonHandlerProps {
-  navigationStore?: NavigationStore
+  navigationStore?: NavigationStore;
   /**
    * Are we allowed to exit?
    */
-  canExit(routeName: string): Boolean
+  canExit(routeName: string): boolean;
 }
 
-@inject("navigationStore")
+@inject('navigationStore')
 @observer
 export class BackButtonHandler extends React.Component<BackButtonHandlerProps, {}> {
   /**
    * Subscribe when we come to life.
    */
-  componentDidMount() {
-    BackHandler.addEventListener("hardwareBackPress", this.onBackPress)
+  componentDidMount () {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress)
   }
 
   /**
    * Unsubscribe when we're done.
    */
-  componentWillUnmount() {
-    BackHandler.removeEventListener("hardwareBackPress", this.onBackPress)
+  componentWillUnmount () {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress)
   }
 
   /**
@@ -51,7 +51,7 @@ export class BackButtonHandler extends React.Component<BackButtonHandlerProps, {
   /**
    * Renders the children or nothing if they weren't passed.
    */
-  render() {
+  render () {
     return this.props.children
   }
 }

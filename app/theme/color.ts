@@ -1,4 +1,4 @@
-import { palette } from "./palette"
+import { palette } from './palette'
 
 /**
  * Roles for colors.  Prefer using these over the palette.  It makes it easier
@@ -19,7 +19,7 @@ export const color = {
    * can cause older Android devices to slow down due to the excessive compositing required
    * by their under-powered GPUs.
    */
-  transparent: "rgba(0, 0, 0, 0)",
+  transparent: 'rgba(0, 0, 0, 0)',
   /**
    * The screen background.
    */
@@ -50,7 +50,7 @@ export const color = {
   error: palette.angry,
 
   /**
-   * Storybook background for Text stories, or any stories where 
+   * Storybook background for Text stories, or any stories where
    * the text color is color.text, which is white by default, and does not show
    * in Stories against the default white background
   */
@@ -60,5 +60,5 @@ export const color = {
    * Storybook text color for stories that display Text components against the
    * white background
   */
-   storybookTextColor: palette.black,
+  storybookTextColor: palette.black
 }

@@ -1,11 +1,11 @@
-import { AsyncStorage } from "react-native"
+import { AsyncStorage } from 'react-native'
 
 /**
  * Loads a string from storage.
  *
  * @param key The key to fetch.
  */
-export async function loadString(key: string): Promise<string | null> {
+export async function loadString (key: string): Promise<string | null> {
   try {
     return await AsyncStorage.getItem(key)
   } catch {
@@ -20,7 +20,7 @@ export async function loadString(key: string): Promise<string | null> {
  * @param key The key to fetch.
  * @param value The value to store.
  */
-export async function saveString(key: string, value: string): Promise<boolean> {
+export async function saveString (key: string, value: string): Promise<boolean> {
   try {
     await AsyncStorage.setItem(key, value)
     return true
@@ -34,7 +34,7 @@ export async function saveString(key: string, value: string): Promise<boolean> {
  *
  * @param key The key to fetch.
  */
-export async function load(key: string): Promise<any | null> {
+export async function load (key: string): Promise<any | null> {
   try {
     const almostThere = await AsyncStorage.getItem(key)
     return JSON.parse(almostThere)
@@ -49,7 +49,7 @@ export async function load(key: string): Promise<any | null> {
  * @param key The key to fetch.
  * @param value The value to store.
  */
-export async function save(key: string, value: any): Promise<boolean> {
+export async function save (key: string, value: any): Promise<boolean> {
   try {
     await AsyncStorage.setItem(key, JSON.stringify(value))
     return true
@@ -63,7 +63,7 @@ export async function save(key: string, value: any): Promise<boolean> {
  *
  * @param key The key to kill.
  */
-export async function remove(key: string): Promise<void> {
+export async function remove (key: string): Promise<void> {
   try {
     await AsyncStorage.removeItem(key)
   } catch {}
@@ -72,7 +72,7 @@ export async function remove(key: string): Promise<void> {
 /**
  * Burn it all to the ground.
  */
-export async function clear(): Promise<void> {
+export async function clear (): Promise<void> {
   try {
     await AsyncStorage.clear()
   } catch {}

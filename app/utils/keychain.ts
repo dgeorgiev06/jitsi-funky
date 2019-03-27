@@ -1,4 +1,4 @@
-import * as ReactNativeKeychain from "react-native-keychain"
+import * as ReactNativeKeychain from 'react-native-keychain'
 
 /**
  * Saves some credentials securely.
@@ -7,7 +7,7 @@ import * as ReactNativeKeychain from "react-native-keychain"
  * @param password The password
  * @param server The server these creds are for.
  */
-export async function save(username: string, password: string, server?: string) {
+export async function save (username: string, password: string, server?: string) {
   if (server) {
     await ReactNativeKeychain.setInternetCredentials(server, username, password)
     return true
@@ -21,27 +21,27 @@ export async function save(username: string, password: string, server?: string) 
  *
  * @param server The server that these creds are for
  */
-export async function load(server?: string) {
+export async function load (server?: string) {
   if (server) {
     const creds = await ReactNativeKeychain.getInternetCredentials(server)
     return {
       username: creds.username,
       password: creds.password,
-      server,
+      server
     }
   } else {
     const creds = await ReactNativeKeychain.getGenericPassword()
-    if (typeof creds === "object") {
+    if (typeof creds === 'object') {
       return {
         username: creds.username,
         password: creds.password,
-        server: null,
+        server: null
       }
     } else {
       return {
         username: null,
         password: null,
-        server: null,
+        server: null
       }
     }
   }
@@ -52,7 +52,7 @@ export async function load(server?: string) {
  *
  * @param server The server which has these creds
  */
-export async function reset(server?: string) {
+export async function reset (server?: string) {
   if (server) {
     await ReactNativeKeychain.resetInternetCredentials(server)
     return true

@@ -1,6 +1,6 @@
-import { ViewStyle, ScrollViewStyle } from "react-native"
-import { color } from "../../theme"
-import { isEmpty, isNil } from "ramda"
+import { ViewStyle, ScrollViewStyle } from 'react-native'
+import { color } from '../../theme'
+import { isEmpty, isNil } from 'ramda'
 
 /**
  * The base shape & color.
@@ -10,7 +10,7 @@ const SHAPE: ScrollViewStyle = { backgroundColor: color.background, flex: 1 }
 /**
  * Governs the default child layout.
  */
-const CONTENTS: ViewStyle = { justifyContent: "flex-start", alignItems: "flex-start" }
+const CONTENTS: ViewStyle = { justifyContent: 'flex-start', alignItems: 'flex-start' }
 
 /**
  * Glues the shape & child layout together since there's no restrictions on view style.
@@ -31,25 +31,25 @@ export const presets = {
   fixed: {
     nonScroll: DOES_NOT_SCROLL,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
    * No scrolling. Children are stretched to full width.
    */
   fixedStack: {
-    nonScroll: { ...DOES_NOT_SCROLL, alignItems: "stretch" } as ViewStyle,
+    nonScroll: { ...DOES_NOT_SCROLL, alignItems: 'stretch' } as ViewStyle,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
    * No scrolling. Content is centered on the screen.
    */
   fixedCenter: {
-    nonScroll: { ...DOES_NOT_SCROLL, justifyContent: "center", alignItems: "center" } as ViewStyle,
+    nonScroll: { ...DOES_NOT_SCROLL, justifyContent: 'center', alignItems: 'center' } as ViewStyle,
     scrollOuter: NOPE,
-    scrollInner: NOPE,
+    scrollInner: NOPE
   },
 
   /**
@@ -60,7 +60,7 @@ export const presets = {
   scroll: {
     nonScroll: NOPE,
     scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS } as ViewStyle,
+    scrollInner: { ...CONTENTS } as ViewStyle
   },
 
   /**
@@ -69,8 +69,8 @@ export const presets = {
   scrollStack: {
     nonScroll: NOPE,
     scrollOuter: SHAPE,
-    scrollInner: { ...CONTENTS, alignItems: "stretch" } as ViewStyle,
-  },
+    scrollInner: { ...CONTENTS, alignItems: 'stretch' } as ViewStyle
+  }
 }
 
 /**
@@ -83,7 +83,7 @@ export type ScreenPresets = keyof typeof presets
  *
  * @param preset The preset to check
  */
-export function isNonScrolling(preset: ScreenPresets) {
+export function isNonScrolling (preset: ScreenPresets) {
   // any of these things will make you scroll
   return !(
     isNil(preset) ||

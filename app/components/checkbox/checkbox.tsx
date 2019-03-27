@@ -1,14 +1,14 @@
-import * as React from "react"
-import { TouchableOpacity, TextStyle, ViewStyle, View } from "react-native"
-import { Text } from "../text"
-import { color, spacing } from "../../theme"
-import { CheckboxProps } from "./checkbox.props"
-import { reduce } from "ramda"
+import * as React from 'react'
+import { TouchableOpacity, TextStyle, ViewStyle, View } from 'react-native'
+import { Text } from '../text'
+import { color, spacing } from '../../theme'
+import { CheckboxProps } from './checkbox.props'
+import { reduce } from 'ramda'
 
 const ROOT: ViewStyle = {
-  flexDirection: "row",
+  flexDirection: 'row',
   paddingVertical: spacing[1],
-  alignSelf: "flex-start",
+  alignSelf: 'flex-start'
 }
 
 const DIMENSIONS = { width: 16, height: 16 }
@@ -16,27 +16,27 @@ const DIMENSIONS = { width: 16, height: 16 }
 const OUTLINE: ViewStyle = {
   ...DIMENSIONS,
   marginTop: 2, // finicky and will depend on font/line-height/baseline/weather
-  justifyContent: "center",
-  alignItems: "center",
+  justifyContent: 'center',
+  alignItems: 'center',
   borderWidth: 1,
   borderColor: color.primaryDarker,
-  borderRadius: 1,
+  borderRadius: 1
 }
 
 const FILL: ViewStyle = {
   width: DIMENSIONS.width - 4,
   height: DIMENSIONS.height - 4,
-  backgroundColor: color.primary,
+  backgroundColor: color.primary
 }
 
 const LABEL: TextStyle = { paddingLeft: spacing[2] }
 
-export function Checkbox(props: CheckboxProps) {
+export function Checkbox (props: CheckboxProps) {
   const numberOfLines = props.multiline ? 0 : 1
 
   let rootStyle
   if (Array.isArray(props.style)) {
-    rootStyle = reduce((acc,term) => {
+    rootStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, ROOT, props.style)
   } else {
@@ -45,7 +45,7 @@ export function Checkbox(props: CheckboxProps) {
 
   let outlineStyle
   if (Array.isArray(props.outlineStyle)) {
-    outlineStyle = reduce((acc,term) => {
+    outlineStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, OUTLINE, props.outlineStyle)
   } else {
@@ -54,7 +54,7 @@ export function Checkbox(props: CheckboxProps) {
 
   let fillStyle
   if (Array.isArray(props.fillStyle)) {
-    fillStyle = reduce((acc,term) => {
+    fillStyle = reduce((acc, term) => {
       return { ...acc, ...term }
     }, FILL, props.fillStyle)
   } else {

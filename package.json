@@ -4,45 +4,81 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean --force",
+    "clean-ios": "rm -rf ios/build ",
     "test": "jest",
     "compile": "tsc --noEmit -p . --pretty",
     "format": "npm-run-all format:*",
     "format:js": "prettier --write {.,**}/*.js",
     "format:json": "prettier --write {.,**}/*.json",
     "format:md": "prettier --write {.,**}/*.md",
-    "format:ts": "prettier --write {.,**}/*.{ts,tsx} && tslint --fix -p .",
+    "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
     "lint": "npm-run-all lint:*",
-    "lint:ts": "tslint -p .",
+    "lint:ts": "eslint index.js app --fix --ext .js,.ts,.tsx",
     "postinstall": "solidarity",
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",
     "patch": "patch-package",
     "prepare": "npm-run-all patch hack:*",
-    "storybook": "storybook start -p 9001 --skip-packager"
+    "storybook": "storybook start -p 9001 --skip-packager",
+    "validate": "npm ls"
   },
   "dependencies": {
+    "@webcomponents/url": "0.7.1",
     "apisauce": "0.16.0",
+    "core-js": "^2.6.5",
     "i18n-js": "^3.0.11",
+    "jquery": "3.3.1",
+    "jquery-contextmenu": "2.4.5",
+    "jquery-i18next": "1.2.0",
+    "js-md5": "0.6.1",
+    "lib-jitsi-meet": "github:jitsi/lib-jitsi-meet#2e1436e20d4d8fb6020497a87b2714dff38a6c86",
     "lodash.throttle": "4.1.1",
     "mobx": "4.2.1",
     "mobx-react": "5.2.8",
     "mobx-state-tree": "2.0.5",
+    "moment": "^2.24.0",
     "ramda": "0.25.0",
     "react": "16.6.3",
     "react-native": "0.57.8",
+    "react-native-background-timer": "2.1.1",
+    "react-native-calendar-events": "1.6.4",
+    "react-native-callkit": "^1.3.4",
+    "react-native-callstats": "3.57.1",
+    "react-native-fast-image": "5.1.1",
     "react-native-gesture-handler": "1.0.9",
+    "react-native-gifted-chat": "0.6.0",
+    "react-native-icon-badge": "^1.1.3",
+    "react-native-immersive": "2.0.0",
+    "react-native-keep-awake": "4.0.0",
     "react-native-keychain": "3.0.0",
     "react-native-languages": "^3.0.0",
+    "react-native-linear-gradient": "2.5.3",
+    "react-native-sound": "github:jitsi/react-native-sound#e4260ed7f641eeb0377d76eac7987aba72e1cf08",
     "react-native-splash-screen": "3.1.1",
+    "react-native-swipeout": "2.3.6",
+    "react-native-vector-icons": "6.0.2",
+    "react-native-webrtc": "github:jitsi/react-native-webrtc#c1be0cb1c6e8a83dfd406e478082a5ff205a97ec",
     "react-navigation": "3.0.0",
     "reactotron-mst": "^2.1.0",
     "reactotron-react-native": "^2.1.0",
-    "validate.js": "0.12.0"
+    "tcomb-form-native": "^0.6.20",
+    "uuid": "3.1.0",
+    "validate.js": "0.12.0",
+    "xmldom": "0.1.27"
   },
   "devDependencies": {
+    "@babel/core": "7.1.2",
+    "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "7.0.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.0.0",
+    "@babel/plugin-transform-flow-strip-types": "7.0.0",
+    "@babel/preset-env": "7.1.0",
+    "@babel/preset-flow": "7.0.0",
+    "@babel/preset-react": "7.0.0",
     "@babel/runtime": "^7.0.0",
     "@storybook/addon-storyshots": "^4.0.6",
     "@storybook/react-native": "3.4.3",
@@ -52,15 +88,32 @@
     "@types/react-native": "0.57.13",
     "@types/react-navigation": "2.13.5",
     "@types/react-test-renderer": "16.0.3",
+    "@typescript-eslint/eslint-plugin": "^1.1.0",
+    "@typescript-eslint/parser": "^1.1.0",
+    "babel-core": "7.0.0-bridge.0",
     "babel-jest": "24.5.0",
+    "babel-loader": "8.0.4",
     "babel-plugin-transform-inline-environment-variables": "0.4.3",
-    "ignite-bowser": "^3.0.0",
+    "eslint": "^5.12.1",
+    "eslint-config-prettier": "^3.6.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-native": "^3.6.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "expose-loader": "0.7.5",
+    "flow-bin": "0.78.0",
+    "ignite-bowser": "^4.0.0-alpha.3",
+    "imports-loader": "0.7.1",
     "jest": "24.5.0",
     "jest-preset-ignite": "0.6.1",
-    "metro-react-native-babel-preset": "0.53.1",
+    "metro-react-native-babel-preset": "0.53.0",
     "npm-run-all": "4.1.5",
     "patch-package": "5.1.1",
     "postinstall-prepare": "1.0.1",
+    "precommit-hook": "3.0.0",
     "prettier": "1.12.1",
     "react-devtools-core": "3.4.3",
     "react-dom": "16.5.0",
@@ -68,39 +121,16 @@
     "react-test-renderer": "16.6.3",
     "rimraf": "2.6.2",
     "solidarity": "2.1.0",
-    "tslint": "5.11.0",
-    "tslint-config-prettier": "1.15.0",
-    "typescript": "3.0.3"
+    "string-replace-loader": "2.1.1",
+    "typescript": "3.2.4",
+    "webpack": "4.26.1",
+    "webpack-cli": "3.1.2"
   },
   "jest": {
-    "preset": "jest-preset-ignite"
-  },
-  "babel": {
-    "presets": [
-      "module:metro-react-native-babel-preset"
-    ],
-    "env": {
-      "production": {}
-    },
-    "plugins": [
-      [
-        "transform-inline-environment-variables",
-        {
-          "include": [
-            "NODE_ENV",
-            "API"
-          ]
-        }
-      ],
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ],
-      [
-        "@babel/plugin-proposal-optional-catch-binding"
-      ]
+    "preset": "jest-preset-ignite",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/e2e"
     ]
   },
   "prettier": {
@@ -109,9 +139,67 @@
     "singleQuote": false,
     "trailingComma": "all"
   },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "prettier",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-native/all",
+      "standard"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "react-native"
+    ],
+    "settings": {
+      "react": {
+        "pragma": "React",
+        "version": "detect"
+      }
+    },
+    "globals": {
+      "__DEV__": false,
+      "jasmine": false,
+      "beforeAll": false,
+      "afterAll": false,
+      "beforeEach": false,
+      "afterEach": false,
+      "test": false,
+      "expect": false,
+      "describe": false,
+      "jest": false,
+      "it": false
+    },
+    "rules": {
+      "no-unused-vars": 0,
+      "no-undef": 0,
+      "react/no-unescaped-entities": 0,
+      "react-native/no-raw-text": 0,
+      "@typescript-eslint/indent": 0,
+      "@typescript-eslint/explicit-member-accessibility": 0,
+      "@typescript-eslint/explicit-function-return-type": 0,
+      "@typescript-eslint/no-explicit-any": 0,
+      "@typescript-eslint/no-object-literal-type-assertion": 0,
+      "@typescript-eslint/no-empty-interface": 0,
+      "@typescript-eslint/no-var-requires": 0
+    }
+  },
   "rnpm": {
     "assets": [
       "./app/theme/fonts/"
     ]
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
 }

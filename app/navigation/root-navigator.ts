@@ -1,12 +1,12 @@
-import { createStackNavigator } from "react-navigation"
-import { ExampleNavigator } from "./example-navigator"
+import { createStackNavigator } from 'react-navigation'
+import { ConferenceNavigator } from './conference-navigator'
 
 export const RootNavigator = createStackNavigator(
   {
-    exampleStack: { screen: ExampleNavigator },
+    conferenceStack: { screen: ConferenceNavigator }
   },
   {
-    headerMode: "none",
-    navigationOptions: { gesturesEnabled: false },
-  },
+    headerMode: 'none',
+    navigationOptions: { gesturesEnabled: false }
+  }
 )

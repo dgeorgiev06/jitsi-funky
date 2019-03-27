@@ -1,29 +1,29 @@
-import * as React from "react"
-import { View, ViewStyle } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { color } from "../../theme"
-import { Text } from "./text"
+import * as React from 'react'
+import { View, ViewStyle } from 'react-native'
+import { storiesOf } from '@storybook/react-native'
+import { StoryScreen, Story, UseCase } from '../../../storybook/views'
+import { color } from '../../theme'
+import { Text } from './text'
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg,
+  backgroundColor: color.storybookDarkBg
 }
 const viewStyleArray: ViewStyle[] = [
   VIEWSTYLE,
-  {backgroundColor: "#7fff00"},
+  { backgroundColor: '#7fff00' }
 ]
 
-storiesOf("Text")
+storiesOf('Text')
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Style Presets", () => (
+  .add('Style Presets', () => (
     <Story>
       <UseCase text="default" usage="Used for normal body text.">
         <View style={VIEWSTYLE}>
           <Text>Hello!</Text>
           <Text style={{ paddingTop: 10 }}>
-            Check out{"\n"}
-            my{"\n"}
+            Check out{'\n'}
+            my{'\n'}
             line height
           </Text>
           <Text style={{ paddingTop: 10 }}>The quick brown fox jumped over the slow lazy dog.</Text>
@@ -42,7 +42,7 @@ storiesOf("Text")
       </UseCase>
     </Story>
   ))
-  .add("Passing Content", () => (
+  .add('Passing Content', () => (
     <Story>
       <UseCase
         text="text"
@@ -69,14 +69,14 @@ storiesOf("Text")
       <UseCase text="nested children" usage="You can embed them and change styles too.">
         <View style={VIEWSTYLE}>
           <Text>
-            {" "}
+            {' '}
             Hello <Text preset="bold">bolded</Text> World.
           </Text>
         </View>
       </UseCase>
     </Story>
   ))
-  .add("Styling", () => (
+  .add('Styling', () => (
     <Story>
       <UseCase
         text="Style array"
@@ -84,7 +84,7 @@ storiesOf("Text")
       >
         <View style={viewStyleArray}>
           <Text>
-            {" "}
+            {' '}
             Hello <Text preset="bold">bolded</Text> World.
           </Text>
         </View>

@@ -1,1 +1,1 @@
-export * from "./bullet-item"
+export * from './bullet-item'

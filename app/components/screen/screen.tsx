@@ -1,15 +1,15 @@
-import * as React from "react"
-import { ScrollView, View, ViewStyle } from "react-native"
-import { ScreenProps } from "./screen.props"
-import { presets, isNonScrolling } from "./screen.presets"
+import * as React from 'react'
+import { ScrollView, View, ViewStyle } from 'react-native'
+import { ScreenProps } from './screen.props'
+import { presets, isNonScrolling } from './screen.presets'
 
 /**
  * This screen does not scroll.
  *
  * @param props The screen props
  */
-function ScreenWithoutScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["fixed"]
+function ScreenWithoutScrolling (props: ScreenProps) {
+  const preset = presets[props.preset] || presets['fixed']
   const style = { ...preset.nonScroll, ...props.style }
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
 
@@ -21,8 +21,8 @@ function ScreenWithoutScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-function ScreenWithScrolling(props: ScreenProps) {
-  const preset = presets[props.preset] || presets["scroll"]
+function ScreenWithScrolling (props: ScreenProps) {
+  const preset = presets[props.preset] || presets['scroll']
   const outerStyle = preset.scrollOuter
   const backgroundStyle = props.backgroundColor ? { backgroundColor: props.backgroundColor } : {}
   const innerStyle = { ...preset.scrollInner, ...props.style } as ViewStyle
@@ -39,7 +39,7 @@ function ScreenWithScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-export function Screen(props: ScreenProps) {
+export function Screen (props: ScreenProps) {
   if (isNonScrolling(props.preset)) {
     return <ScreenWithoutScrolling {...props} />
   } else {

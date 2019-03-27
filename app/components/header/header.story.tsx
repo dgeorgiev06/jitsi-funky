@@ -1,18 +1,18 @@
-import * as React from "react"
-import { View } from "react-native"
-import { storiesOf } from "@storybook/react-native"
-import { StoryScreen, Story, UseCase } from "../../../storybook/views"
-import { Header } from "./header"
-import { color } from "../../theme"
+import * as React from 'react'
+import { View } from 'react-native'
+import { storiesOf } from '@storybook/react-native'
+import { StoryScreen, Story, UseCase } from '../../../storybook/views'
+import { Header } from './header'
+import { color } from '../../theme'
 
 const VIEWSTYLE = {
   flex: 1,
-  backgroundColor: color.storybookDarkBg,
+  backgroundColor: color.storybookDarkBg
 }
 
-storiesOf("Header")
+storiesOf('Header')
   .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
-  .add("Behavior", () => (
+  .add('Behavior', () => (
     <Story>
       <UseCase noPad text="default" usage="The default usage">
         <View style={VIEWSTYLE}>
@@ -26,7 +26,7 @@ storiesOf("Header")
           <Header
             headerTx="secondExampleScreen.howTo"
             leftIcon="back"
-            onLeftPress={() => window.alert("left nav")}
+            onLeftPress={() => window.alert('left nav')}
           />
         </View>
       </UseCase>
@@ -35,7 +35,7 @@ storiesOf("Header")
           <Header
             headerTx="secondExampleScreen.howTo"
             rightIcon="bullet"
-            onRightPress={() => window.alert("right nav")}
+            onRightPress={() => window.alert('right nav')}
           />
         </View>
       </UseCase>

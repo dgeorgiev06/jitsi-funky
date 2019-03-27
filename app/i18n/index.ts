@@ -1,2 +1,2 @@
-import "./i18n"
-export * from "./translate"
+import './i18n'
+export * from './translate'

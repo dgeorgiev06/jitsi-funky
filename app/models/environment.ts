@@ -1,5 +1,6 @@
-import { Reactotron } from "../services/reactotron"
-import { Api } from "../services/api"
+import { Reactotron } from '../services/reactotron'
+import { Api } from '../services/api'
+import { JitsiApi } from '../services/jitsi-api'
 
 /**
  * The environment is a place where services and shared dependencies between
@@ -15,4 +16,12 @@ export class Environment {
    * Our api.
    */
   api: Api
+
+  jitsiMeetJS: any
+
+  options: any
+
+  jitsiApi: JitsiApi
+
+  handleUrl: string
 }

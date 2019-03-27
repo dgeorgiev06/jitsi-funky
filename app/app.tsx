@@ -2,19 +2,19 @@
 //
 // In this file, we'll be kicking off our app or storybook.
 
-import "./i18n"
-import * as React from "react"
-import { AppRegistry } from "react-native"
-import { StatefulNavigator } from "./navigation"
-import { StorybookUIRoot } from "../storybook"
-import { RootStore, setupRootStore } from "./models/root-store"
-import { Provider } from "mobx-react"
-import { BackButtonHandler } from "./navigation/back-button-handler"
-import { contains } from "ramda"
-import { DEFAULT_NAVIGATION_CONFIG } from "./navigation/navigation-config"
+import './i18n'
+import * as React from 'react'
+import { AppRegistry } from 'react-native'
+import { StatefulNavigator } from './navigation'
+import { StorybookUIRoot } from '../storybook'
+import { RootStore, setupRootStore } from './models/root-store'
+import { Provider } from 'mobx-react'
+import { BackButtonHandler } from './navigation/back-button-handler'
+import { contains } from 'ramda'
+import { DEFAULT_NAVIGATION_CONFIG } from './navigation/navigation-config'
 
 interface AppState {
-  rootStore?: RootStore
+  rootStore?: RootStore;
 }
 
 /**
@@ -25,9 +25,9 @@ export class App extends React.Component<{}, AppState> {
    * When the component is mounted. This happens asynchronously and simply
    * re-renders when we're good to go.
    */
-  async componentDidMount() {
+  async componentDidMount () {
     this.setState({
-      rootStore: await setupRootStore(),
+      rootStore: await setupRootStore()
     })
   }
 
@@ -37,11 +37,11 @@ export class App extends React.Component<{}, AppState> {
    *
    * @param routeName The currently active route name.
    */
-  canExit(routeName: string) {
+  canExit (routeName: string) {
     return contains(routeName, DEFAULT_NAVIGATION_CONFIG.exitRoutes)
   }
 
-  render() {
+  render () {
     const rootStore = this.state && this.state.rootStore
 
     // Before we show the app, we have to wait for our state to be ready.
@@ -59,7 +59,7 @@ export class App extends React.Component<{}, AppState> {
     // otherwise, we're ready to render the app
 
     // --- am: begin list of stores ---
-    const otherStores = {}
+    const otherStores = { connectionStore: rootStore.connectionStore }
     // --- am: end list of stores ---
 
     return (
@@ -75,7 +75,7 @@ export class App extends React.Component<{}, AppState> {
 /**
  * This needs to match what's found in your app_delegate.m and MainActivity.java.
  */
-const APP_NAME = "JitsiFunky"
+const APP_NAME = 'JitsiFunky'
 
 // Should we show storybook instead of our app?
 //
@@ -84,4 +84,3 @@ const SHOW_STORYBOOK = false
 
 const RootComponent = SHOW_STORYBOOK && __DEV__ ? StorybookUIRoot : App
 AppRegistry.registerComponent(APP_NAME, () => RootComponent)
-

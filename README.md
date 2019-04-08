@@ -24,3 +24,7 @@ INSTALLATION INSTRUCTIONS:
 4. open 2 terminals and make sure you are in the root directory:
 5. run npm start — — reset-cache
 6. run react-native run-ios — device ( TO RUN ON THE DEVICE YOU WILL NEED TO SIGN THE PROJECT IN XCODE )
+
+More details here:
+
+https://medium.com/@dgeorgiev06/chat-and-video-conference-app-with-react-native-ignite-lib-jitsi-meet-react-native-callkit-21089944ba54

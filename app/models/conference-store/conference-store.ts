@@ -236,18 +236,7 @@ export const ConferenceStoreModel = types
 
       self.conference.join()
     },
-    cleanUp () {
-      self.conference.off(JitsiConferenceEvents.CONFERENCE_ERROR, self.onConferenceError)
-      self.conference.off(JitsiConferenceEvents.CONFERENCE_FAILED, self.onConferenceFailed)
-      self.conference.off(JitsiConferenceEvents.USER_LEFT, self.onUserLeft)
-      self.conference.off(JitsiConferenceEvents.DOMINANT_SPEAKER_CHANGED, self.onDominantSpeakerChanged)
-      self.conference.off(JitsiConferenceEvents.CONFERENCE_JOINED, self.onConferenceJoined)
-      self.conference.off(JitsiConferenceEvents.USER_JOINED, self.onUserJoined)
-      self.conference.off(JitsiConferenceEvents.TRACK_ADDED, self.onTrackAdded)
-      self.conference.off(JitsiConferenceEvents.TRACK_REMOVED, self.onTrackRemoved)
-      self.conference.off(JitsiConferenceEvents.USER_STATUS_CHANGED, self.onUserStatusChanged)
-      self.conference.off(JitsiConferenceEvents.MESSAGE_RECEIVED, self.onMessageReceived)
-
+    cleanUp() {
       self.lastReadMessage = null
       self.messages.clear()
 
@@ -259,8 +248,23 @@ export const ConferenceStoreModel = types
       }
 
       self.participantStore.cleanUp()
-      self.conference.leave()
+      const conference = self.conference
       self.conference = null
+      
+      conference.off(JitsiConferenceEvents.CONFERENCE_ERROR, self.onConferenceError)
+      conference.off(JitsiConferenceEvents.CONFERENCE_FAILED, self.onConferenceFailed)
+      conference.off(JitsiConferenceEvents.USER_LEFT, self.onUserLeft)
+      conference.off(JitsiConferenceEvents.DOMINANT_SPEAKER_CHANGED, self.onDominantSpeakerChanged)
+      conference.off(JitsiConferenceEvents.CONFERENCE_JOINED, self.onConferenceJoined)
+      conference.off(JitsiConferenceEvents.USER_JOINED, self.onUserJoined)
+      conference.off(JitsiConferenceEvents.TRACK_ADDED, self.onTrackAdded)
+      conference.off(JitsiConferenceEvents.TRACK_REMOVED, self.onTrackRemoved)
+      conference.off(JitsiConferenceEvents.USER_STATUS_CHANGED, self.onUserStatusChanged)
+      conference.off(JitsiConferenceEvents.MESSAGE_RECEIVED, self.onMessageReceived)
+
+      conference.leave().catch( (e) => {
+        console.log(e)
+      } ) 
     }
   }))
   .actions(self => ({

@@ -2,6 +2,7 @@ import { types, flow, getEnv } from 'mobx-state-tree'
 import { ConferenceStoreModel } from '../conference-store'
 import { JitsiConnectionEvents } from '../../../jitsi-meet'
 import { omit } from 'ramda'
+import { configOverrides } from '../../../jitsi-meet/config'
 
 /**
  * Model description here for TypeScript hints.
@@ -14,7 +15,7 @@ export const ConnectionStoreModel = types
   })
   .volatile(self => ({
     connection: null,
-    options: {}
+    options: null
   }))
   .views(self => ({
     getConnection () {
@@ -49,8 +50,28 @@ export const ConnectionStoreModel = types
   }))
   .actions(self => ({
     connect: flow(function * createConnection () {
-      const response = yield getEnv(self).jitsiApi.getOptions(self.conference.room)
-      self.options = response.options
+      let config = self.options
+
+      if(!config) {
+        const response = yield getEnv(self).jitsiApi.getOptions(self.conference.room)
+        config = response.options
+        if(getEnv(self).useOverrides) {
+          const overrides = configOverrides()
+
+          if (overrides) {
+            config = Object.assign(config, overrides)
+          }
+        }
+
+        if(__DEV__) {
+          config.bosh = 'http:' + config.bosh + '?room=' + self.conference.room
+        }
+        else {
+          config.bosh = 'https:' + config.bosh + '?room=' + self.conference.room
+        }
+      }
+
+      self.options = config
       const jitsiMeetJS = getEnv(self).jitsiMeetJS
       self.connection = new jitsiMeetJS.JitsiConnection(null, null, self.options)
     })
@@ -66,10 +87,10 @@ export const ConnectionStoreModel = types
     },
     disconnect () {
       if (self.connection && self.connected) {
+        self.conference.cleanUp()
         self.connection.removeEventListener(JitsiConnectionEvents.CONNECTION_DISCONNECTED, self.onConnectionDisconnect)
         self.connection.removeEventListener(JitsiConnectionEvents.CONNECTION_ESTABLISHED, self.onConnectionEstablished)
         self.connection.removeEventListener(JitsiConnectionEvents.CONNECTION_FAILED, self.onConnectionFailed)
-        self.conference.cleanUp()
         self.connection.disconnect()
         self.connection = null
         self.connected = false
@@ -77,7 +98,7 @@ export const ConnectionStoreModel = types
     }
   }))
   .actions(self => ({
-    postProcessSnapshot: omit(['conference', 'connected'])
+    postProcessSnapshot: omit(['connected'])
   }))
 
 type ConnectionStoreType = typeof ConnectionStoreModel.Type

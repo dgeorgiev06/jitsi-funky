@@ -25,7 +25,9 @@ export const ParticipantModel = types
       self.tracks[track.mediaType] = track
     },
     removeTrack (track) {
-      delete self.tracks[track.mediaType]
+      if(self.tracks && self.tracks[track.mediaType]) {
+        delete self.tracks[track.mediaType]
+      }
     }
   }))
   .actions(self => ({
@@ -39,7 +41,7 @@ export const ParticipantModel = types
     }
   }))
   .actions(self => ({
-    postProcessSnapshot: omit(['_id', '_displayName', '_isLocal', '_connectionStatus'])
+    postProcessSnapshot: omit(['_connectionStatus'])
   }))
 
 type ParticipantType = typeof ParticipantModel.Type

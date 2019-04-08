@@ -48,6 +48,7 @@ export class JitsiApi {
    */
   async getOptions (room: string): Promise<any> {
     // make the api call
+    
     const response: ApiResponse<any> = await this.apisauce.get(`/config.js?room=` + room)
 
     // the typical ways to die when calling an api
@@ -60,7 +61,7 @@ export class JitsiApi {
     try {
       eval.call(window, response.data)
 
-      const { config } = window
+      let { config } = window
 
       // We don't want to pollute the global scope.
       window.config = undefined
@@ -68,8 +69,6 @@ export class JitsiApi {
       if (typeof config !== 'object') {
         throw new Error('window.config is not an object')
       }
-
-      config.bosh = 'https:' + config.bosh + '?room=' + room
 
       return { kind: 'ok', options: config }
     } catch {

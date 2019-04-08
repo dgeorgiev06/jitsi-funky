@@ -57,7 +57,9 @@ export const ParticipantStoreModel = types
     },
     removeTrackForParticipant (id: string, track: any) {
       const participant = self.participants.get(id)
-      participant.removeTrack(track)
+      if(participant) {
+        participant.removeTrack(track)
+      }
     }
   }))
   .actions(self => ({
@@ -71,7 +73,7 @@ export const ParticipantStoreModel = types
     }
   }))
   .actions(self => ({
-    postProcessSnapshot: omit(['participants', 'dominantParticipant'])
+    postProcessSnapshot: omit(['dominantParticipant'])
   }))
 
 type ParticipantStoreType = typeof ParticipantStoreModel.Type

@@ -15,7 +15,6 @@
     "format:ts": "prettier --write {.,**}/*.{ts,tsx}",
     "lint": "npm-run-all lint:*",
     "lint:ts": "eslint index.js app --fix --ext .js,.ts,.tsx",
-    "postinstall": "solidarity",
     "hack:types-react-navigation": "rimraf node_modules/@types/react-navigation/node_modules/@types",
     "hack:types-react-native": "rimraf node_modules/@types/react-native/node_modules/@types",
     "hack:types-react-test-renderer": "rimraf node_modules/@types/react-test-renderer/node_modules/@types",

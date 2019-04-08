@@ -15,3 +15,5 @@ In server manager -> server properties:
 2. set xmpp.server.certificate.verify.chain to false
 3. set xmpp.auth.anonymous to true
 
+
+//xmpp.socket.ssl.active: true //not sure if this needs to be set

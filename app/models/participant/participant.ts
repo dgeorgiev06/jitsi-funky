@@ -25,7 +25,7 @@ export const ParticipantModel = types
       self.tracks[track.mediaType] = track
     },
     removeTrack (track) {
-      if(self.tracks && self.tracks[track.mediaType]) {
+      if (self.tracks && self.tracks[track.mediaType]) {
         delete self.tracks[track.mediaType]
       }
     }

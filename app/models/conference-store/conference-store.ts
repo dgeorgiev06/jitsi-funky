@@ -236,7 +236,7 @@ export const ConferenceStoreModel = types
 
       self.conference.join()
     },
-    cleanUp() {
+    cleanUp () {
       self.lastReadMessage = null
       self.messages.clear()
 
@@ -250,7 +250,7 @@ export const ConferenceStoreModel = types
       self.participantStore.cleanUp()
       const conference = self.conference
       self.conference = null
-      
+
       conference.off(JitsiConferenceEvents.CONFERENCE_ERROR, self.onConferenceError)
       conference.off(JitsiConferenceEvents.CONFERENCE_FAILED, self.onConferenceFailed)
       conference.off(JitsiConferenceEvents.USER_LEFT, self.onUserLeft)
@@ -262,9 +262,9 @@ export const ConferenceStoreModel = types
       conference.off(JitsiConferenceEvents.USER_STATUS_CHANGED, self.onUserStatusChanged)
       conference.off(JitsiConferenceEvents.MESSAGE_RECEIVED, self.onMessageReceived)
 
-      conference.leave().catch( (e) => {
+      conference.leave().catch((e) => {
         console.log(e)
-      } ) 
+      })
     }
   }))
   .actions(self => ({

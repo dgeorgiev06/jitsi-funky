@@ -35,7 +35,6 @@ const SAFE_AREA_VIEW: ViewStyle = {
 @inject('connectionStore')
 @observer
 export class ChatScreen extends React.Component<ChatScreenProps, {}> {
-  
   onSend = ([message]) => {
     this.props.onSendMessage(message.text)
   }

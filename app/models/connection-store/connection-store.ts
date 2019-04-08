@@ -52,10 +52,10 @@ export const ConnectionStoreModel = types
     connect: flow(function * createConnection () {
       let config = self.options
 
-      if(!config) {
+      if (!config) {
         const response = yield getEnv(self).jitsiApi.getOptions(self.conference.room)
         config = response.options
-        if(getEnv(self).useOverrides) {
+        if (getEnv(self).useOverrides) {
           const overrides = configOverrides()
 
           if (overrides) {
@@ -63,10 +63,9 @@ export const ConnectionStoreModel = types
           }
         }
 
-        if(__DEV__) {
+        if (__DEV__) {
           config.bosh = 'http:' + config.bosh + '?room=' + self.conference.room
-        }
-        else {
+        } else {
           config.bosh = 'https:' + config.bosh + '?room=' + self.conference.room
         }
       }

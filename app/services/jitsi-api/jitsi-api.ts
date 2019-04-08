@@ -48,7 +48,7 @@ export class JitsiApi {
    */
   async getOptions (room: string): Promise<any> {
     // make the api call
-    
+
     const response: ApiResponse<any> = await this.apisauce.get(`/config.js?room=` + room)
 
     // the typical ways to die when calling an api

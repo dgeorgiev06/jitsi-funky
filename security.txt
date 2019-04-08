@@ -1,0 +1,17 @@
+https://gist.github.com/polevaultweb/c83ac276f51a523a80d8e7f9a61afad0
+
+1. add root CA certificte ( myCA.crt ) and server certificte to keychain access under system.  move the file from finder to keychain access
+2. open each certificate by double clicking on it in keychain access
+3. expand the trust section and select "Always trust" in the "When using this certificate" drowpdown
+4. Email myCA.crt to yourself.  Open the email in iPhone and install the certificate by clicking on the attachment
+5. Go to settings -> general -> about -> certificate trust settings.  Switch on the entry of the certificate you just installed
+
+or disable ssl:
+
+
+In server manager -> server properties: 
+
+1. set xmpp.server.certificate.verify to false
+2. set xmpp.server.certificate.verify.chain to false
+3. set xmpp.auth.anonymous to true
+

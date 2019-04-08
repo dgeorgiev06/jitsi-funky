@@ -52,7 +52,6 @@ const CHAT_BUTTON: ViewStyle = {
 @inject('connectionStore')
 @observer
 export class ActionBarScreen extends React.Component<ActionBarScreenProps, {}> {
-
   onToggleChat = () => {
     this.props.onToggleChat()
   }

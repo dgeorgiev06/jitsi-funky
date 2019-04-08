@@ -57,7 +57,7 @@ export const ParticipantStoreModel = types
     },
     removeTrackForParticipant (id: string, track: any) {
       const participant = self.participants.get(id)
-      if(participant) {
+      if (participant) {
         participant.removeTrack(track)
       }
     }

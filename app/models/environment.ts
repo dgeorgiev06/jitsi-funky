@@ -1,7 +1,7 @@
 import { Reactotron } from '../services/reactotron'
 import { Api } from '../services/api'
 import { JitsiApi } from '../services/jitsi-api'
-import { BorderBlockEndColorProperty } from 'csstype';
+import { BorderBlockEndColorProperty } from 'csstype'
 
 /**
  * The environment is a place where services and shared dependencies between

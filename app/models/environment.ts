@@ -27,4 +27,6 @@ export class Environment {
   handleUrl: string
 
   useOverrides: boolean
+
+  ssl: boolean
 }

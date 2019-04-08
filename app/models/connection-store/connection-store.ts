@@ -63,10 +63,10 @@ export const ConnectionStoreModel = types
           }
         }
 
-        if (__DEV__) {
-          config.bosh = 'http:' + config.bosh + '?room=' + self.conference.room
-        } else {
+        if (getEnv(self).ssl) {
           config.bosh = 'https:' + config.bosh + '?room=' + self.conference.room
+        } else {
+          config.bosh = 'http:' + config.bosh + '?room=' + self.conference.room
         }
       }
 

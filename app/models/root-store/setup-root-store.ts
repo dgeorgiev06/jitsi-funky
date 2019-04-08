@@ -25,6 +25,8 @@ export async function createEnvironment () {
   //env.useOverrides = __DEV__ ? true : false
   env.useOverrides = false
 
+  env.ssl = true
+
   // create each service
   env.reactotron = new Reactotron()
   env.api = new Api()
